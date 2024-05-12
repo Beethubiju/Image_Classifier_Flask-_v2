@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1300px;
+            max-height: 700px;
+            margin: 0px auto;
+            text-align: center;
+            background-color: #f7f4f4;
+            padding: 20px;
+            border-radius: 0px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Set background image */
+            background-image: url('https://assets.technologynetworks.com/production/dynamic/images/content/370155/the-unfolding-landscape-of-cancer-vaccine-development-370155-960x540.jpg?cb=12160311');
+            background-size: cover;
+            background-position: center;
+        }
+        h1 {
+            margin-bottom: 30px;
+            color: #f7f1f1;
+            font-style: italic;
+            text-shadow: 2px 2px 2px #333;
+            text-decoration: underline;
+            text-align: left;
+        }
+        .upload-form {
+            margin-bottom: 20px;
+        }
+        .upload-form input[type=file] {
+            display: none;
+        }
+        .upload-form label {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-form label:hover {
+            background-color: #45a049;
+        }
+        .upload-form button[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-form button[type=submit]:hover {
+            background-color: #45a049;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white background */
+            
+        }
+        .added-image {
+            margin-top: 20px;
+            width: 100%; /* Make the image fill the full page */
+        }
+        .image-label {
+            position: absolute;
+            top: calc(60% + 20px);
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white background */
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 20px;
+            color: #333;
+            width: 90%; /* Adjust as needed */
+            max-width: 200px; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Classification</h1>
+        <form action="/predict" method="post" enctype="multipart/form-data" class="upload-form">
+            <label for="file">Upload Image</label>
+            <input type="file" name="file" id="file" accept="image/*">
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction_text %}
+        <div class="output">
+            <h2>{{ prediction_text }}</h2>
+        </div>
+        {% endif %}
+    </div>
+    <img src="https://cdn.cancercenter.com/-/media/ctca/images/others/blogs/2018/02-february/07-blog-cancer-cells-l.jpg" alt="Cancer Cells" class="added-image">
+        <div class="image-label">
+            <p><strong>Numerical Value: 0</strong>  <strong>Benign</strong></p>
+            <p><strong>Numerical Value: 1</strong>  <strong>Malignant</strong></p>
+            <p><strong>Numerical Value: 2</strong>  <strong>Normal</strong></p>
+        </div>
+</body>
+</html>
